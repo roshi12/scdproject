@@ -1,0 +1,29 @@
+# BACKEND SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  type: NodePort
+  selector:
+    app: student-management-backend
+  ports:
+    - port: 80
+      targetPort: 5000
+      nodePort: 30007
+
+---
+
+# FRONTEND SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  type: NodePort
+  selector:
+    app: student-management-frontend
+  ports:
+    - port: 80
+      targetPort: 3000
+      nodePort: 30008

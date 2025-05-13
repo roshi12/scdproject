@@ -1,0 +1,9 @@
+﻿{
+  "agentId": 2,
+  "agentName": "SCD_Project",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus3.actions.githubusercontent.com/Imm20p0QiNYOQYn76Xany76qegPOnb1uoBEi7dDQlm9T8lpLK3/",
+  "gitHubUrl": "https://github.com/roshi12/scdproject",
+  "workFolder": "_work"
+}

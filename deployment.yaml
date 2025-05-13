@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: roshi12/student-management-backend:latest
+          image: abdullah656/scdproject-backend:latest
           ports:
             - containerPort: 5000
           env:
@@ -43,6 +43,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: roshi12/student-management-frontend:latest
+          image: abdullah656/scdproject-frontend:latest
           ports:
             - containerPort: 3000

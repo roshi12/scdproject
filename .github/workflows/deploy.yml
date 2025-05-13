@@ -1,0 +1,37 @@
+name: Build and Deploy to Minikube
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker to use Minikube's environment
+        run: |
+          & minikube docker-env | Invoke-Expression
+          echo "Docker environment set to Minikube"
+
+      - name: Build Docker images
+        run: |
+          docker-compose build
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Push Docker images to Docker Hub
+        run: |
+          docker tag scdproject-backend abdullah656/scdproject-backend:latest
+          docker tag scdproject-frontend abdullah656/scdproject-frontend:latest
+          docker push abdullah656/scdproject-backend:latest
+          docker push abdullah656/scdproject-frontend:latest
+
+      - name: Deploy to Minikube
+        run: |
+          kubectl apply -f mongo-deployment.yaml -n student-app
+          kubectl apply -f deployment.yaml -n student-app
+          kubectl apply -f service.yaml -n student-app
